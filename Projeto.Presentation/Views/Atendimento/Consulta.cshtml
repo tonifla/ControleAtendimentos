@@ -1,0 +1,82 @@
+﻿@model List<Projeto.Presentation.Models.AtendimentoConsultaViewModel>
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+<h4>Consulta de atendimentos</h4>
+<hr />
+
+<strong class="text-danger">
+    @Html.Raw(@TempData["Mensagem"])
+</strong>
+
+<div class="form-row align-items-center">
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div><a href="" class="search_icon btn btn-outline-primary disabled" role="button" aria-disabled="true"><i class="fas fa-search"></i></a></div>
+            </div>
+            <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <table id="tabela" class="table table-hover table-bordered table-striped table-sm" style="border: 3px solid #17a2b8">
+            <thead class="thead-light">
+                <tr align="center">
+                    <th class="bg-info text-white">@Html.Label("Código")</th>
+                    <th class="bg-info text-white">@Html.Label("Paciente")</th>
+                    <th class="bg-info text-white">@Html.Label("Fisioterapeuta")</th>
+                    <th class="bg-info text-white">@Html.Label("Data")</th>
+                    <th class="bg-info text-white">@Html.Label("Hora")</th>
+                    <th class="bg-info text-white">@Html.Label("Conduta")</th>
+                    <th class="bg-info text-white">@Html.Label("Operações")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td align="center">@Html.DisplayFor(modelItem => item.AtenIdentificador)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Paciente.PaciNome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Fisioterapeuta.FisiNome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AtenData)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AtenHora)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AtenConduta)</td>
+                        <td align="center">
+                            <a href="/Atendimento/Edicao/@item.AtenIdentificador"
+                               class="btn btn-primary btn-sm">
+                                Atualizar
+                            </a>
+                            <a href="/Atendimento/Exclusao/@item.AtenIdentificador"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Deseja excluir este atendimento?');">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">Quantidade de atendimentos: @Model.Count
+                    <th>
+                        <a href="/Atendimento/Relatorio"
+                           class="btn btn-info btn-sm btn-block">
+                            Gerar relatório de atendimentos
+                        </a>
+                    </th>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script>
+    $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+</script>

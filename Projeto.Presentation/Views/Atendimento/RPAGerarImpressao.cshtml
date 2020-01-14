@@ -1,0 +1,193 @@
+﻿@model Projeto.Presentation.Models.AtendimentoRPAGerarImpressao
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<strong class="text-danger">
+    @Html.Raw(@TempData["Mensagem"])
+</strong>
+<br />
+
+<input class="botao btn btn-dark  btn-md" display="none" type="button" name="back" value="Voltar" onClick=" javascript:history.back(-1);">
+
+<input class="botao btn btn-primary btn-md" display="none" type="button" name="print" value="Imprimir" onclick="javascript:window.print();">
+
+
+@using (Html.BeginForm())
+{
+    <table border="1" width="800" cellspacing="0" cellpadding="0" align=center>
+        <tbody>
+            <tr style="height: 45px;">
+                <td style="height: 45px;" colspan="9" nowrap="nowrap" width="800">
+                    <p style="text-align: center;"><strong>RECIBO DE PAGAMENTO A AUTÔNOMO – RPA</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="7" nowrap="nowrap" width="400">
+                    <p>NOME OU RAZÃO SOCIAL DO CONTRATANTE</p>
+                </td>
+                <td style="text-align: center; height: 30px;" colspan="2" nowrap="nowrap" width="400">
+                    <p>CPF OU CNPJ DO CONTRATANTE</p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="7" nowrap="nowrap" width="400">
+                    <p><strong>@Html.DisplayFor(model => model.RPAPaciNome)</strong></p>
+                </td>
+                <td style="text-align: center; height: 30px;" colspan="2" nowrap="nowrap" width="400">
+                    <p><strong>@Html.DisplayFor(model => model.RPAPaciCpfCnpj)</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="9" nowrap="nowrap" width="800">
+                    <p>RECEBI DA CONTRATANTE ACIMA IDENTIFICADA, PELA PRESTAÇÃO DOS SERVIÇOS.</p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 60px;">
+                <td style="height: 60px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="text-align: center;">A IMPORTÂNCIA DE</p>
+                </td>
+                <td style="height: 60px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="text-align: center;"><strong>@Html.DisplayFor(model => model.RPAPaciValorAtendimento)</strong></p>
+                    <p style="text-align: center;"><strong>(@Html.DisplayFor(model => model.RPAPaciValorAtendimentoPorExtenso))</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 60px;">
+                <td style="height: 200px;" colspan="9" nowrap="nowrap" width="800">
+                    <p style="text-align: center;">POR @Html.DisplayFor(model => model.RPAQuantidade) (@Html.DisplayFor(model => model.RPAQuantidadePorExtenso)) ATENDIMENTOS PRESTADOS AO PACIENTE NAS DATAS:</p>
+                    <p style="text-align: center;">@Html.DisplayFor(model => model.RPADatasAtendimento)</p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="9" nowrap="nowrap" width="800">
+                    <p style="padding-left: 5px;">CONFORME DISCRIMINADO ABAIXO:</p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;">VALOR DO SERVIÇO PRESTADO</p>
+                </td>
+                <td style="height: 30px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;"><strong>@Html.DisplayFor(model => model.RPAPaciValorAtendimento) (@Html.DisplayFor(model => model.RPAPaciValorAtendimentoPorExtenso))</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;">IRRF</p>
+                </td>
+                <td style="height: 30px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;"><strong>-</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;">INSS</p>
+                </td>
+                <td style="height: 30px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;"><strong>-</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;">ISSQN</p>
+                </td>
+                <td style="height: 30px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;"><strong>-</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;">DESCONTO</p>
+                </td>
+                <td style="height: 30px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="padding-left: 5px;"><strong>-</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 60px;">
+                <td style="height: 60px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="text-align: center;">VALOR LÍQUIDO</p>
+                </td>
+                <td style="height: 60px;" colspan="5" nowrap="nowrap" width="400">
+                    <p style="text-align: center;"> <strong>@Html.DisplayFor(model => model.RPAPaciValorAtendimento)</strong></p>
+                    <p style="text-align: center;"><strong>(@Html.DisplayFor(model => model.RPAPaciValorAtendimentoPorExtenso))</strong> </p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="text-align: center;">CPF OU CNPJ DO CONTRATADO</p>
+                </td>
+                <td style="height: 70px;" colspan="5" rowspan="2" width="400">
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;">______________________________________________</p>
+                    <p style="text-align: center;">ASSINATURA DO CONTRATADO</p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="4" nowrap="nowrap" width="400">
+                    <p style="text-align: center;"><strong>@Html.DisplayFor(model => model.RPAFisiCpfCnpj)</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="text-align: center; height: 30px;" colspan="9" nowrap="nowrap" width="800"> </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="2" nowrap="nowrap" width="200">
+                    <p style="text-align: center;">LOCALIDADE</p>
+                </td>
+                <td style="height: 30px;" colspan="2" nowrap="nowrap" width="200">
+                    <p style="text-align: center;">DATA</p>
+                </td>
+                <td style="height: 30px;" colspan="5" width="400">
+                    <p style="text-align: center;">CONTRATADO</p>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="height: 30px;" colspan="2" nowrap="nowrap" width="200">
+                    <p style="text-align: center;"><strong>@Html.DisplayFor(model => model.RPAPaciMunicipio) / @Html.DisplayFor(model => model.RPAPaciEstado)</strong></p>
+                </td>
+                <td style="height: 30px;" colspan="2" nowrap="nowrap" width="200">
+                    <p style="text-align: center;"><strong>@Html.DisplayFor(model => model.RPADataAtual)</strong></p>
+                </td>
+                <td style="height: 30px;" colspan="5" width="400">
+                    <p style="text-align: center;"><strong>@Html.DisplayFor(model => model.RPAFisiNome)</strong></p>
+                </td>
+            </tr>
+            <tr style="height: 80px;">
+                <td style="height: 80px;" colspan="9" nowrap="nowrap" width="800">
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;">DECLARO PARA OS DEVIDOS FINS QUE O SERVIÇO FOI PRESTADO.</p>
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;">__________________________________________________</p>
+                    <p style="text-align: center;">ASSINATURA DO CONTRATANTE </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+}
+
+<style media="print">
+    .botao {
+        display: none;
+    }
+</style>

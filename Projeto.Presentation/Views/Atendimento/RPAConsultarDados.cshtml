@@ -1,0 +1,110 @@
+﻿@model Projeto.Presentation.Models.AtendimentoRPAConsultarDados
+
+@{
+                /**/
+
+                Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+<h4>Consultar dados para gerar RPA (Recibo de pagamento a autônomo)</h4>
+<hr />
+
+<strong class="text-danger">
+    @Html.Raw(@TempData["Mensagem"])
+</strong>
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-group row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            @Html.LabelFor(model => model.AtenPaciIdentificador)
+            @Html.DropDownListFor(model => model.AtenPaciIdentificador, Model.ListagemDePacientes, "Escolha uma opção", new { @class = "form-control", id = "AtenPaciIdentificador" })
+            @Html.ValidationMessageFor(model => model.AtenPaciIdentificador, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-6">
+            @Html.LabelFor(model => model.AtenFisiIdentificador)
+            @Html.DropDownListFor(model => model.AtenFisiIdentificador, Model.ListagemDeFisioterapeutas, "Escolha uma opção", new { @class = "form-control", id = "AtenFisiIdentificador" })
+            @Html.ValidationMessageFor(model => model.AtenFisiIdentificador, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.AtenDataInicial)
+            @Html.TextBoxFor(model => model.AtenDataInicial, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", id = "AtenDataInicial" })
+            @Html.ValidationMessageFor(model => model.AtenDataInicial, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.AtenDataFinal)
+            @Html.TextBoxFor(model => model.AtenDataFinal, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", id = "AtenDataFinal" })
+            @Html.ValidationMessageFor(model => model.AtenDataFinal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}
+
+<div align="left">
+    <hr />
+    <button class="btn btn-primary"
+            type="submit"
+            id="GerarImpressaoRPA" name="GerarImpressaoRPA" value="Gerar" onclick="gerarImpressaoRPA()">
+        Gerar RPA
+    </button>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    var paciente;
+    var fisioterapeuta;
+    var dataInicial;
+    var dataFinal;
+    var urlGerarImpressaoRPA = '@Url.Action("RPAGerarImpressao", "Atendimento")';
+
+    function gerarImpressaoRPA() {
+        paciente = $('#AtenPaciIdentificador').val();
+        fisioterapeuta = $('#AtenFisiIdentificador').val();
+        dataInicial = $('#AtenDataInicial').val();
+        dataFinal = $('#AtenDataFinal').val();
+
+        if (paciente == "") {
+            alert('Favor selecionar o paciente.');
+            document.getElementById('AtenPaciIdentificador').focus();
+            exit;
+        }
+
+        if (fisioterapeuta == "") {
+            alert('Favor selecionar o fisioterapeuta.');
+            document.getElementById('AtenFisiIdentificador').focus();
+            exit;
+        }
+
+        if (dataInicial == "") {
+            alert('Favor selecionar a data inicial.');
+            document.getElementById('AtenDataInicial').focus();
+            exit;
+        }
+
+        if (dataFinal == "") {
+            alert('Favor selecionar a data final.');
+            document.getElementById('AtenDataFinal').focus();
+            exit;
+        }
+
+        if (dataInicial >= dataFinal) {
+            alert('A data inicial não pode ser maior ou igual que a data final.');
+            document.getElementById('AtenDataInicial').focus();
+            exit;
+        }
+
+            window.location.href = urlGerarImpressaoRPA + "?AtenPaciIdentificador=" + paciente + "&AtenFisiIdentificador=" + fisioterapeuta + "&AtenDataInicial=" + dataInicial + "&AtenDataFinal=" + dataFinal;
+    }
+
+</script>

@@ -1,0 +1,63 @@
+﻿@model Projeto.Presentation.Models.FisioterapeutaCadastroViewModel
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+<h4>Cadastro de fisioterapeutas</h4>
+<hr />
+
+<strong class="text-danger">
+    @Html.Raw(@TempData["Mensagem"])
+</strong>
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-group row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            @Html.LabelFor(model => model.FisiNome):
+            @Html.TextBoxFor(model => model.FisiNome, new { @class = "form-control", @placeholder = "Digite aqui", id = "FisiNome" })
+            @Html.ValidationMessageFor(model => model.FisiNome, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.FisiCpfCnpj):
+            @Html.TextBoxFor(model => model.FisiCpfCnpj, new { @class = "form-control", @placeholder = "Digite aqui", id = "FisiCpfCnpj" })
+            @Html.ValidationMessageFor(model => model.FisiCpfCnpj, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.FisiCrefito):
+            @Html.TextBoxFor(model => model.FisiCrefito, new { @class = "form-control", @placeholder = "Digite aqui", id = "FisiCrefito" })
+            @Html.ValidationMessageFor(model => model.FisiCrefito, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.FisiCelular)
+            @Html.TextBoxFor(model => model.FisiCelular, new { @class = "form-control", @placeholder = "Digite aqui", id = "FisiCelular" })
+            @Html.ValidationMessageFor(model => model.FisiCelular, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-10">
+            @Html.LabelFor(model => model.FisiEmail)
+            @Html.TextBoxFor(model => model.FisiEmail, new { @class = "form-control", @placeholder = "Digite aqui", id = "FisiEmail" })
+            @Html.ValidationMessageFor(model => model.FisiEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="submit" value="Cadastrar fisioterapeuta" class="btn btn-primary" />
+
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#FisiCpfCnpj").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
+        $("#FisiCelular").inputmask("mask", { "mask": "(99) 99999-9999" });
+        $("#FisiCrefito").inputmask("mask", { "mask": "999999-A" });
+    });
+</script>

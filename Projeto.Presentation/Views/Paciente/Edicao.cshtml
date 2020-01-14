@@ -1,0 +1,154 @@
+﻿@model Projeto.Presentation.Models.PacienteEdicaoViewModel
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+<h4>Atualização de pacientes</h4>
+<hr />
+
+
+<strong class="text-danger">
+    @Html.Raw(@TempData["Mensagem"])
+</strong>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PaciIdentificador)
+
+    <div class="form-group row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            @Html.LabelFor(model => model.PaciNome):
+            @Html.TextBoxFor(model => model.PaciNome, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciNome" })
+            @Html.ValidationMessageFor(model => model.PaciNome, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciCpfCnpj):
+            @Html.TextBoxFor(model => model.PaciCpfCnpj, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciCpfCnpj" })
+            @Html.ValidationMessageFor(model => model.PaciCpfCnpj, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-6">
+            @Html.LabelFor(model => model.PaciEndereco):
+            @Html.TextBoxFor(model => model.PaciEndereco, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciEndereco" })
+            @Html.ValidationMessageFor(model => model.PaciEndereco, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciNumero):
+            @Html.TextBoxFor(model => model.PaciNumero, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciNumero" })
+            @Html.ValidationMessageFor(model => model.PaciNumero, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.PaciComplemento):
+            @Html.TextBoxFor(model => model.PaciComplemento, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciComplemento" })
+            @Html.ValidationMessageFor(model => model.PaciComplemento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-5">
+            @Html.LabelFor(model => model.PaciBairro):
+            @Html.TextBoxFor(model => model.PaciBairro, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciBairro" })
+            @Html.ValidationMessageFor(model => model.PaciBairro, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.PaciMunicipio):
+            @Html.TextBoxFor(model => model.PaciMunicipio, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciMunicipio" })
+            @Html.ValidationMessageFor(model => model.PaciMunicipio, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-1">
+            @Html.LabelFor(model => model.PaciEstado):
+            @Html.TextBoxFor(model => model.PaciEstado, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciEstado" })
+            @Html.ValidationMessageFor(model => model.PaciEstado, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciCep):
+            @Html.TextBoxFor(model => model.PaciCep, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciCep" })
+            @Html.ValidationMessageFor(model => model.PaciCep, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            @Html.LabelFor(model => model.PaciPontoReferencia):
+            @Html.TextBoxFor(model => model.PaciPontoReferencia, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciPontoReferencia" })
+            @Html.ValidationMessageFor(model => model.PaciPontoReferencia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciCelular):
+            @Html.TextBoxFor(model => model.PaciCelular, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciCelular" })
+            @Html.ValidationMessageFor(model => model.PaciCelular, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciTelefone):
+            @Html.TextBoxFor(model => model.PaciTelefone, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciTelefone" })
+            @Html.ValidationMessageFor(model => model.PaciTelefone, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.PaciEmail):
+            @Html.TextBoxFor(model => model.PaciEmail, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciEmail" })
+            @Html.ValidationMessageFor(model => model.PaciEmail, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciDataInicioAtendimento):
+            @Html.TextBoxFor(model => model.PaciDataInicioAtendimento, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", id = "PaciDataInicioAtendimento" })
+            @Html.ValidationMessageFor(model => model.PaciDataInicioAtendimento, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.PaciValorAtendimento):
+            @Html.TextBoxFor(model => model.PaciValorAtendimento, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciValorAtendimento" })
+            @Html.ValidationMessageFor(model => model.PaciValorAtendimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.PaciDiagnostico):
+            @Html.TextAreaFor(model => model.PaciDiagnostico, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciDiagnostico" })
+            @Html.ValidationMessageFor(model => model.PaciDiagnostico, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.PaciPatologia):
+            @Html.TextAreaFor(model => model.PaciPatologia, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciPatologia" })
+            @Html.ValidationMessageFor(model => model.PaciPatologia, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.PaciObservacao):
+            @Html.TextAreaFor(model => model.PaciObservacao, new { @class = "form-control", @placeholder = "Digite aqui", id = "PaciObservacao" })
+            @Html.ValidationMessageFor(model => model.PaciObservacao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="submit" value="Atualizar paciente" class="btn btn-primary" />
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#PaciCpfCnpj").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
+        $("#PaciEstado").inputmask("mask", { "mask": "AA" });
+        $("#PaciCep").inputmask("mask", { "mask": "99999-999" });
+        $("#PaciCelular").inputmask("mask", { "mask": "(99) 99999-9999" });
+        $("#PaciTelefone").inputmask("mask", { "mask": "(99) 99999-9999" });
+        $("#PaciValorAtendimento").inputmask("mask", { "mask": "R$ 999,99" }, { reverse: true });
+    });
+</script>
